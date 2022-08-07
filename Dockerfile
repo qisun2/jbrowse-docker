@@ -1,14 +1,14 @@
 # JBrowse
-# VERSION 1.0
+# VERSION 2.0
 FROM nginx
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update --fix-missing
-RUN apt-get --no-install-recommends -y install git build-essential zlib1g-dev libxml2-dev libexpat-dev postgresql-client libpq-dev
+RUN apt-get --no-install-recommends -y install git build-essential zlib1g-dev libxml2-dev libexpat-dev postgresql-client libpq-dev nodejs npm certbot python3-certbot-nginx
 
 RUN mkdir -p /jbrowse/ && git clone --recursive https://github.com/gmod/jbrowse /jbrowse/ && \
     cd /jbrowse/ && \
-    git checkout 1.12.3-release
+    git checkout 1.16.11-release
 
 WORKDIR /jbrowse/
 RUN ./setup.sh && \
